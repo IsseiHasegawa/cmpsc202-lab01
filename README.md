@@ -10,7 +10,7 @@ Note: fork this repository to your own GitHub account before starting the lab!
 
 **The Problem:** The Maximum Subarray Problem.
 Given a list of integers (containing both positive and negative numbers), find the contiguous sublist with the largest sum.
-For example: 
+For example:
 
 ```
 Input: [-2, 1, -3, 4, -1, 2, 1, -5, 4]
@@ -22,9 +22,24 @@ Explanation: The contiguous sublist [4, -1, 2, 1] has the largest sum = 6.
 
 Before looking at optimized solutions, your first task is to design a baseline or "naive" solution.
 
-**Design:** Devise an algorithm that finds the maximum subarray by evaluating all possible contiguous subarrays. Write down the steps clearly in pseudocode before moving on to the implementation. 
+**Design:** Devise an algorithm that finds the maximum subarray by evaluating all possible contiguous subarrays. Write down the steps clearly in pseudocode before moving on to the implementation.
 
-*Hint:* see the pseudocode for Kadane's Algorithm in Part 2 for guidance on how to structure your approach.
+_Hint:_ see the pseudocode for Kadane's Algorithm in Part 2 for guidance on how to structure your approach.
+
+```
+Algorithm: BasekineMaxSubarray(A)
+Input: A list A of n integers
+Output: The maximum contiguous subarray sum
+
+1. max_so_far = negative infinity
+2. For i from 0 to n-1:
+3.     current_sum = 0
+4.     For j from i to n-1:
+5.         current_sum = current_sum + A[j]
+6.         If current_sum > max_so_far:
+7.             max_so_far = current_sum
+8. Return max_so_far
+```
 
 ## Part 2: The Optimized Algorithm (Kadane's Algorithm)
 
@@ -58,12 +73,11 @@ You will now implement both algorithms in Python and set up an experimental fram
 2. **Data Generation:** Write a helper function using `numpy.random.randint` to generate random integer lists of a given length. Ensure the lists contain both positive and negative numbers (e.g., range from -100 to 100).
 
 3. **Benchmarking Setup:**
+   - Use `time.perf_counter()` to measure execution time.
 
-   * Use `time.perf_counter()` to measure execution time.
+   - Test your algorithms on lists of the following lengths: $N \in \{100, 500, 1000, 2500, 5000, 10000\}$.
 
-   * Test your algorithms on lists of the following lengths: $N \in \{100, 500, 1000, 2500, 5000, 10000\}$.
-
-   * **Important:** System background processes can cause noisy data. For each array size $N$, run the algorithms 5 to 10 times on freshly generated lists and record the *average* execution time.
+   - **Important:** System background processes can cause noisy data. For each array size $N$, run the algorithms 5 to 10 times on freshly generated lists and record the _average_ execution time.
 
 ## Part 4: Visualization
 
@@ -78,12 +92,13 @@ A crucial part of empirical benchmarking is communicating your results clearly. 
 ## Part 5: Teaching Staff Check-in
 
 Discuss your work with a member of the teaching staff to get feedback on your implementation and analysis. In particular, discuss the following:
+
 - Be able to clearly describe the problem
 - How your baseline algorithm works
 - How Kadane's algorithm works
 - Your plot showing the performance comparison between the baseline and Kadane's algorithm
 
- If everything looks good, then proceed to Part 6 and complete the exercise.
+If everything looks good, then proceed to Part 6 and complete the exercise.
 
 ## Part 6: Exercise
 
